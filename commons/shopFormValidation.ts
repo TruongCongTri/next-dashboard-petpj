@@ -41,12 +41,12 @@ export const productFormSchema = z.object({
   }),
   stock: z.union([z.coerce.number().optional(), z.literal("")]),
   // images: z.union([z.string().optional().array() , z.literal("")]),
-  images: z
-    .array(
-      z.string().url({
-        message: "Image must ne a url",
-      })
-    ),
+  // images: z
+  //   .array(
+  //     z.string().url({
+  //       message: "Image must ne a url",
+  //     })
+  //   ),
     // .nonempty({ message: "Image can not be empty." }),
 
   thumbnail: z.string().url({ message: "Image must ne a url" }),

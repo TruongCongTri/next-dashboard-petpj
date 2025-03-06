@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import {
@@ -91,7 +91,7 @@ export default function ViewProdForm() {
     sku: "",
 
     thumbnail: "",
-    images: [""],
+    // images: [""],
     weight: 0,
     width: 0,
     height: 0,
@@ -113,7 +113,7 @@ export default function ViewProdForm() {
     sku: prod?.sku || "",
 
     thumbnail: prod?.thumbnail || "",
-    images: prod?.images || [""],
+    // images: prod?.images || [""],
     weight: prod?.weight,
     width: prod?.dimensions.width,
     height: prod?.dimensions.height,
@@ -133,16 +133,16 @@ export default function ViewProdForm() {
     values,
   });
 
-  const { setValue } = form;
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = form;
-  const { fields, append, remove } = useFieldArray({
-    control,
-    name: "images",
-  });
+  // const { setValue } = form;
+  // const {
+  //   control,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = form;
+  // const { fields, append, remove } = useFieldArray({
+  //   control,
+  //   name: "images",
+  // });
 
   async function onSubmit() {
     try {
@@ -157,7 +157,7 @@ export default function ViewProdForm() {
   return (
     <div className="h-full w-full items-center justify-center ">
       <Form {...form}>
-        <form className="space-y-8" onSubmit={handleSubmit(onSubmit)}>
+        <form className="space-y-8" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="w-full flex gap-2 justify-end items-end">
             <Button variant="secondary">
               <Link
@@ -309,7 +309,7 @@ export default function ViewProdForm() {
                               className="hidden"
                               setTags={(newTags) => {
                                 setTags(newTags);
-                                setValue(
+                                form.setValue(
                                   "tags",
                                   newTags as [string, ...string[]]
                                 );
@@ -394,7 +394,7 @@ export default function ViewProdForm() {
             </div>
           </div>
           <div className="flex w-full basis gap-4">
-            <Card className="basis-3/4">
+            {/* <Card className="basis-3/4">
               <CardHeader>
                 <CardTitle className="text-xl">Gallery</CardTitle>
               </CardHeader>
@@ -451,7 +451,7 @@ export default function ViewProdForm() {
                   </Button>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
             <Card className="basis-1/4">
               <CardHeader>
                 <CardTitle className="text-xl">Thumbnail</CardTitle>
