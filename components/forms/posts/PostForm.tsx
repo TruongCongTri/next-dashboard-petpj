@@ -165,7 +165,7 @@ export default function PostForm() {
                             id="userId"
                             placeholder="Type User id here. . ."
                             autoComplete="id"
-                            type="number"
+                            type="number"     
                             {...field}
                           />
                         </FormControl>
