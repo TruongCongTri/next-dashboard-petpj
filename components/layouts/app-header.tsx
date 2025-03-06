@@ -41,7 +41,7 @@ const data = {
 export function AppHeader({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <header
-      className="flex justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b"
+      className="flex justify-between h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 border-b sticky top-0"
       {...props}
     >
       <div className="flex items-center gap-2 px-4">
