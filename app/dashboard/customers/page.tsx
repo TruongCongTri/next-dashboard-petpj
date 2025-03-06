@@ -7,9 +7,9 @@ import { LogOut, Plus } from "lucide-react";
 
 import { userColumns } from "@/components/tables/user-columns";
 import { UserDataTable } from "@/components/tables/user-data-table";
-import { IUserType } from "@/models/dummyType";
+import { IUserFetch } from "@/models/dummyType";
 
-async function getData(): Promise<IUserType[]> {
+async function getData(): Promise<IUserFetch> {
   // Fetch data from your API here.
   const res = await fetch("https://dummyjson.com/users");
   return res.json();

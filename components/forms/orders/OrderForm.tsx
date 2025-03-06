@@ -43,7 +43,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useParams } from "next/navigation";
 
 import { Badge } from "@/components/ui/badge";
 import { shippingStatus } from "@/data/orderConstants";
@@ -51,7 +50,6 @@ import { ICartType, IUserType } from "@/models/dummyType";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableFooter,
   TableHead,
@@ -75,7 +73,6 @@ function exchangeCurrency(item: string) {
 }
 
 export default function OrderForm() {
-  const param = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const [order, setOrder] = useState<ICartType>();
   const [user, setUser] = useState<IUserType>();
@@ -106,7 +103,7 @@ export default function OrderForm() {
 
   const createdDate = new Date();
 
-  const [shippingList, setShippingList] = useState<string[]>(shippingStatus);
+  const [shippingList] = useState<string[]>(shippingStatus);
 
   const form = useForm<Schema>({
     resolver: zodResolver(shippingStatusFormSchema),
@@ -357,7 +354,7 @@ export default function OrderForm() {
                         <TableCell>Total</TableCell>
                         <TableCell className="text-right">
                           {exchangeCurrency(
-                            (order?.discountedTotal + 5).toString()
+                            (order?.discountedTotal ? (order?.discountedTotal + 5) : 5).toString()
                           )}
                         </TableCell>
                       </TableRow>

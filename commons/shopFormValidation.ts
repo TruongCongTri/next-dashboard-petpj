@@ -46,8 +46,8 @@ export const productFormSchema = z.object({
       z.string().url({
         message: "Image must ne a url",
       })
-    )
-    .nonempty({ message: "Image can not be empty." }),
+    ),
+    // .nonempty({ message: "Image can not be empty." }),
 
   thumbnail: z.string().url({ message: "Image must ne a url" }),
 });

@@ -5,15 +5,7 @@ import { orderDetailsBreadcrumb } from "@/data/breadcrumb";
 
 import OrderForm from "@/components/forms/orders/OrderForm";
 
-export default async function OrderDetailsPage({
-  params,
-  searchParams,
-}: {
-  params: Promise<{ id: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
-}) {
-  const { id } = await params;
-  
+export default async function OrderDetailsPage() {
   return (
     <div className="px-6 py-8 space-y-6">
       <div className="w-full flex items-end justify-between">

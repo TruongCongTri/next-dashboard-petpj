@@ -87,12 +87,12 @@ export const transactionColumns: ColumnDef<ICartType>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Status" />
     ),
-    cell: ({ row }) => {
+    cell: () => {
       const s = "Delivered";
 
       return (
         <>
-          {`${s}` === "Shipped" ? (
+          {/* {`${s}` === "Shipped" ? (
             <Badge className="bg-blue-100 text-blue-500 rounded-full hover:bg-blue-100">{`${s}`}</Badge>
           ) : `${s}` === "Delivered" ? (
             <Badge className="bg-emerald-100 text-emerald-500 rounded-full hover:bg-emerald-100">{`${s}`}</Badge>
@@ -102,6 +102,9 @@ export const transactionColumns: ColumnDef<ICartType>[] = [
             `${s}` === "Out of Stock" && (
               <Badge className="bg-red-100 text-red-500 rounded-full hover:bg-red-100">{`${s}`}</Badge>
             )
+          )} */}
+          {`${s}` === "Delivered" && (
+            <Badge className="bg-emerald-100 text-emerald-500 rounded-full hover:bg-emerald-100">{`${s}`}</Badge>
           )}
         </>
       );
@@ -112,10 +115,10 @@ export const transactionColumns: ColumnDef<ICartType>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Added" />
     ),
-    cell: ({ row }) => {
+    cell: () => {
       const date = new Date();
 
-      return <div>{date}</div>;
+      return <div>{date.toDateString()}</div>;
     },
   },
 ];

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 // Importing necessary components and functions
 import { useEffect } from "react"; // importing useEffect hook from react
 import { getCookie } from "cookies-next"; // a function to get the value of a cookie
@@ -6,7 +6,11 @@ import { useAuthStore } from "@/store/useAuthStore";
 // a hook to access the authentication store
 
 // Defining the layout component
-export default function Layout({ children }: any) {
+export default function Layout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   // Getting the token value from a cookie
   const token = getCookie("token");
 
@@ -19,7 +23,7 @@ export default function Layout({ children }: any) {
     if (token) {
       setAuthentication(true); // Setting the authentication status to true if a token exists
     }
-  }, [token]);
+  }, [setAuthentication, token]);
 
   // Rendering the layout with the Navbar, main content, and Footer components
   return (

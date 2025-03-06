@@ -8,10 +8,10 @@ import { LogOut, Plus } from "lucide-react";
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
 import { PostDataTable } from "@/components/tables/post-data-table";
-import { IPostType } from "@/models/dummyType";
+import { IPostFetch } from "@/models/dummyType";
 import { postColumns } from "@/components/tables/post-columns";
 
-const fetchPosts = async (): Promise<IPostType[]> => {
+const fetchPosts = async (): Promise<IPostFetch> => {
   const res = await fetch("https://dummyjson.com/posts");
   return res.json();
 };

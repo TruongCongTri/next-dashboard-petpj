@@ -30,7 +30,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { TagInput } from "@/components/ui/customize/tag-input";
-import { useParams } from "next/navigation";
 
 import {
   warranties,
@@ -39,18 +38,18 @@ import {
   availabilityStatus,
 } from "../../../data/prodConstants";
 import { Badge } from "@/components/ui/badge";
+import { ICategoryType } from "@/models/dummyType";
 
 export default function ProdForm() {
-  const param = useParams();
   const [isLoading, setIsLoading] = useState(false);
 
   const [isCateLoading, setIsCateLoading] = useState(true);
   const [cateNameList, setCateNameList] = useState<string[]>();
   const [tags, setTags] = React.useState<string[]>([]);
 
-  const [warrantiesList, setWarrantiesList] = useState<string[]>(warranties);
-  const [returnList, setReturnList] = useState<string[]>(returnPolicies);
-  const [shippingList, setShippingList] = useState<string[]>(shippingTimes);
+  const [warrantiesList] = useState<string[]>(warranties);
+  const [returnList] = useState<string[]>(returnPolicies);
+  const [shippingList] = useState<string[]>(shippingTimes);
 
   useEffect(() => {
     const fetchCates = async () => {
@@ -59,7 +58,7 @@ export default function ProdForm() {
       });
       const data = await res.json();
       // setCateList(data);
-      setCateNameList(() => data.map((o) => o.name.toLowerCase()));
+      setCateNameList(() => data.map((o: ICategoryType) => o.name.toLowerCase()));
       setIsCateLoading(false);
     };
 
@@ -361,7 +360,7 @@ export default function ProdForm() {
                                     ? "lowStock"
                                     : field.value === "Out of Stock"
                                     ? "outOfStock"
-                                    : ""
+                                    : null
                                 }
                               >
                                 {field.value}

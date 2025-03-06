@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -27,7 +27,6 @@ import { IPostType } from "@/models/dummyType";
 type Schema = z.infer<typeof postFormSchema>;
 
 export default function EditPostForm() {
-  const router = useRouter();
   const param = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState<IPostType>();
@@ -43,7 +42,7 @@ export default function EditPostForm() {
     };
 
     fetchProducts();
-  }, []);
+  }, [param]);
 
   const defaultValues: Partial<Schema> = {
     title: "",
@@ -51,10 +50,10 @@ export default function EditPostForm() {
     userId: 0,
   };
 
-  const values: Partial<Schema> = {
-    title: post?.title,
-    body: post?.body,
-    userId: post?.userId,
+  const values: Schema = {
+    title: post?.title || "",
+    body: post?.body || "",
+    userId: post?.userId || 0,
   };
 
   const form = useForm<Schema>({

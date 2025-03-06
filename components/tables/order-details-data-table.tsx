@@ -18,15 +18,10 @@ import {
   Table,
   TableBody,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
-import { DataTablePagination } from "./common-table-pagination";
-import { DataTableViewOptions } from "./common-toggle-column";
-import { Input } from "../ui/input";
 import { Badge } from "../ui/badge";
 
 interface DataTableProps<TData, TValue> {
@@ -123,7 +118,6 @@ export function OrderDataTable<TData, TValue>({
               </TableRow>
             )}
           </TableBody>
-          
         </Table>
       </div>
     </div>

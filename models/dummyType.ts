@@ -45,7 +45,9 @@ export interface IProductType {
   minimumOrderQuantity?: number;
   thumbnail?: string;
 }
-
+export interface IProductFetch {
+  products: IProductType[];
+}
 export interface IPageType {
   page: number;
   perPage: number;
@@ -79,7 +81,9 @@ export interface IUserType {
 
   role: "admin" | "moderator" | "user";
 }
-
+export interface IUserFetch {
+  users: IUserType[];
+}
 export interface IAuthType {
   username: string;
   password: string;
@@ -101,6 +105,9 @@ export interface IPostType {
   };
   views?: number;
   userId: number;
+}
+export interface IPostFetch {
+  posts: IPostType[];
 }
 
 export interface IProdCartType {

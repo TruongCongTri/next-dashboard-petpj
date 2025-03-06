@@ -3,7 +3,6 @@ import React from "react";
 import LoginForm from "@/components/forms/LoginForm";
 
 import { SquarePlus } from "lucide-react";
-import SigninForm from "@/components/forms/SigninForm";
 
 export default function LoginPage() {
   return (
@@ -16,7 +15,6 @@ export default function LoginPage() {
           Dashlab
         </a>
         <LoginForm />
-        {/* <SigninForm /> */}
       </div>
     </div>
   );

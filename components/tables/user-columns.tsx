@@ -94,7 +94,7 @@ export const userColumns: ColumnDef<IUserType>[] = [
     header: ({ column }) => (
       <DataTableColumnHeader column={column} title="Balance" />
     ),
-    cell: ({ row }) => {
+    cell: () => {
       // const amount = parseFloat(row.getValue("balance"));
       const amount = parseFloat('121')
       const formatted = new Intl.NumberFormat("en-US", {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 import {
@@ -16,30 +16,14 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+
 import {
-  productFormSchema,
   userProfileFormSchema,
 } from "@/commons/shopFormValidation";
-import { Loader2, Plus, X } from "lucide-react";
+import { Loader2, Plus } from "lucide-react";
 import { siteConfig } from "../../../data/site";
-import Link from "next/link";
-import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { IProductType, IUserType } from "@/models/dummyType";
-import { TagInput } from "@/components/ui/customize/tag-input";
+import { IUserType } from "@/models/dummyType";
 import { useParams, useRouter } from "next/navigation";
-import {
-  warranties,
-  returnPolicies,
-  shippingTimes,
-} from "../../../data/prodConstants";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Separator } from "@/components/ui/separator";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -73,7 +57,7 @@ export default function ViewUserForm() {
     };
     fetchUser();
     // fetchCates();
-  }, []);
+  }, [param]);
 
   const defaultValues: Partial<Schema> = {
     username: "",
@@ -89,9 +73,9 @@ export default function ViewUserForm() {
     gender: "",
   };
 
-  const values: Partial<Schema> = {
-    username: user?.username,
-    email: user?.email,
+  const values: Schema = {
+    username: user?.username || "",
+    email: user?.email || "",
     firstName: user?.firstName,
     lastName: user?.lastName,
     maidenName: user?.maidenName,

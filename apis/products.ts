@@ -1,4 +1,4 @@
-import { IProductType } from "@/models/dummyType";
+import { IProductFetch, IProductType } from "@/models/dummyType";
 
 export const fetchProducts = async (): Promise<IProductType[]> => {
   const res = await fetch("https://dummyjson.com/products");
@@ -6,7 +6,7 @@ export const fetchProducts = async (): Promise<IProductType[]> => {
 };
 
 const products = {
-  async getAllProducts(): Promise<IProductType[]> {
+  async getAllProducts(): Promise<IProductFetch> {
     const res = await fetch("https://dummyjson.com/products");
     return res.json();
   },

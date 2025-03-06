@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
@@ -29,7 +28,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { IProductType } from "@/models/dummyType";
+import { ICategoryType, IProductType } from "@/models/dummyType";
 import { TagInput } from "@/components/ui/customize/tag-input";
 import { useParams } from "next/navigation";
 import {
@@ -50,9 +49,9 @@ export default function EditProdForm() {
   const [cateNameList, setCateNameList] = useState<string[]>();
   const [tags, setTags] = React.useState<string[]>([]);
 
-  const [warrantiesList, setWarrantiesList] = useState<string[]>(warranties);
-  const [returnList, setReturnList] = useState<string[]>(returnPolicies);
-  const [shippingList, setShippingList] = useState<string[]>(shippingTimes);
+  const [warrantiesList] = useState<string[]>(warranties);
+  const [returnList] = useState<string[]>(returnPolicies);
+  const [shippingList] = useState<string[]>(shippingTimes);
 
   useEffect(() => {
     const fetchProds = async () => {
@@ -69,13 +68,14 @@ export default function EditProdForm() {
         method: "GET",
       });
       const data = await res.json();
-      // setCateList(data);
-      setCateNameList(() => data.map((o) => o.name.toLowerCase()));
+      setCateNameList(() =>
+        data.map((o: ICategoryType) => o.name.toLowerCase())
+      );
       setIsCateLoading(false);
     };
     fetchProds();
     fetchCates();
-  }, []);
+  }, [param]);
 
   const defaultValues: Partial<Schema> = {
     title: "",
@@ -99,21 +99,21 @@ export default function EditProdForm() {
     stock: 0,
   };
 
-  const values: Partial<Schema> = {
-    title: prod?.title,
-    description: prod?.description,
-    price: prod?.price,
-    category: prod?.category,
-    brand: prod?.brand,
-    sku: prod?.sku,
+  const values: Schema = {
+    title: prod?.title || "",
+    description: prod?.description || "",
+    price: prod?.price || 0,
+    category: prod?.category || "",
+    brand: prod?.brand || "",
+    sku: prod?.sku || "",
 
-    thumbnail: prod?.thumbnail,
-    images: prod?.images,
+    thumbnail: prod?.thumbnail || "",
+    images: prod?.images || [""],
     weight: prod?.weight,
     width: prod?.dimensions.width,
     height: prod?.dimensions.height,
     depth: prod?.dimensions.depth,
-    tags: prod?.tags,
+    tags: prod?.tags || [""],
     warrantyInformation: prod?.warrantyInformation,
     shippingInformation: prod?.shippingInformation,
     returnPolicy: prod?.returnPolicy,
@@ -316,7 +316,7 @@ export default function EditProdForm() {
                             // onValueChange={field.onChange}
                             onValueChange={field.onChange}
                             value={field.value.toString()}
-                            disabled={isLoading}
+                            disabled={isCateLoading || isLoading}
                           >
                             <FormControl>
                               <SelectTrigger>
@@ -394,7 +394,7 @@ export default function EditProdForm() {
                                     ? "lowStock"
                                     : field.value === "Out of Stock"
                                     ? "outOfStock"
-                                    : ""
+                                    : null
                                 }
                               >
                                 {field.value}

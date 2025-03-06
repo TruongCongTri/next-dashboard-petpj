@@ -170,18 +170,19 @@ export const orderColumns: ColumnDef<ICartType>[] = [
       const status = "Draft";
       return (
         <>
-          {`${status}` === "Draft" ? (
+          {`${status}` === "Draft" && (
             <Badge className="bg-gray-100 text-gray-500 rounded-full hover:bg-gray-100">{`${status}`}</Badge>
-          ) : `${status}` === "Delivered" ? (
-            <Badge className="bg-emerald-100 text-emerald-500 rounded-full hover:bg-emerald-100">{`${status}`}</Badge>
-          ) : `${status}` === "Processing" ? (
-            <Badge className="bg-orange-100 text-orange-500 rounded-full hover:bg-orange-100">{`${status}`}</Badge>
-          ) : `${status}` === "Shipped" ? (
-            <Badge className="bg-blue-100 text-blue-500 rounded-full hover:bg-blue-100">{`${status}`}</Badge>
-          ) : (
-            `${status}` === "Cancelled" && (
-              <Badge className="bg-red-100 text-red-500 rounded-full hover:bg-red-100">{`${status}`}</Badge>
-            )
+            // )  `${status}` === "Delivered" ? (
+            //   <Badge className="bg-emerald-100 text-emerald-500 rounded-full hover:bg-emerald-100">{`${status}`}</Badge>
+            // ) : `${status}` === "Processing" ? (
+            //   <Badge className="bg-orange-100 text-orange-500 rounded-full hover:bg-orange-100">{`${status}`}</Badge>
+            // ) : `${status}` === "Shipped" ? (
+            //   <Badge className="bg-blue-100 text-blue-500 rounded-full hover:bg-blue-100">{`${status}`}</Badge>
+            // ) : (
+            //   `${status}` === "Cancelled" && (
+            //     <Badge className="bg-red-100 text-red-500 rounded-full hover:bg-red-100">{`${status}`}</Badge>
+            //   )
+            // )}
           )}
         </>
       );

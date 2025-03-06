@@ -21,14 +21,11 @@ import Link from "next/link";
 import { siteConfig } from "@/data/site";
 export default async function CustomerDetailsPage({
   params,
-  searchParams,
 }: {
   params: Promise<{ id: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
   const { id } = await params;
-  const cartsList = await apis.customers.getCartsByUser(id);
-  console.log(cartsList.carts);
+  const data = await apis.customers.getCartsByUser(id);
 
   return (
     <div className="px-6 py-8 space-y-6">
@@ -83,7 +80,7 @@ export default async function CustomerDetailsPage({
               <CardContent>
                 <div>Total Orders</div>
                 <div className="flex items-center gap-1">
-                  {cartsList.total}
+                  10
                   <Badge variant="increase" className="rounded-full">
                     +10%
                   </Badge>
@@ -109,7 +106,7 @@ export default async function CustomerDetailsPage({
           </div>
           <TransactionDataTable
             columns={transactionColumns}
-            data={cartsList.carts}
+            data={data.carts}
           />
         </div>
       </div>

@@ -32,7 +32,6 @@ import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/useAuthStore";
 import { setCookie } from "cookies-next";
-import { SiteConfig } from "../../data/site";
 
 type Schema = z.infer<typeof loginFormSchema>;
 

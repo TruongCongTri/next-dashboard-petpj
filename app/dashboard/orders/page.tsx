@@ -5,11 +5,11 @@ import { ordersBreadcrumb } from "@/data/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { LogOut, Plus } from "lucide-react";
 
-import { ICartType } from "@/models/dummyType";
+import { CartArr } from "@/models/dummyType";
 import { OrderDataTable } from "@/components/tables/order-data-table";
 import { orderColumns } from "@/components/tables/order-columns";
 
-async function getData(): Promise<ICartType[]> {
+async function getData(): Promise<CartArr> {
   // Fetch data from your API here.
   const res = await fetch("https://dummyjson.com/carts");
   return res.json();

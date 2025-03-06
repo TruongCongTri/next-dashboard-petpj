@@ -18,8 +18,6 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useAuthStore } from "@/store/useAuthStore";
 import { deleteCookie } from "cookies-next";
 import { Button } from "../ui/button";
 

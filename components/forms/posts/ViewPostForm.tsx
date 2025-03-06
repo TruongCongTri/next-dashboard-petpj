@@ -43,7 +43,7 @@ export default function ViewPostForm() {
     };
 
     fetchProducts();
-  }, []);
+  }, [param]);
 
   const defaultValues: Partial<Schema> = {
     title: "",
@@ -51,10 +51,10 @@ export default function ViewPostForm() {
     userId: 0,
   };
 
-  const values: Partial<Schema> = {
-    title: post?.title,
-    body: post?.body,
-    userId: post?.userId,
+  const values: Schema = {
+    title: post?.title || "",
+    body: post?.body || "",
+    userId: post?.userId || 0,
   };
 
   const form = useForm<Schema>({

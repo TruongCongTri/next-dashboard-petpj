@@ -1,4 +1,4 @@
-import { IUserType, ICartType } from "@/models/dummyType";
+import { IUserType, CartArr } from "@/models/dummyType";
 
 export const fetchUsers = async (): Promise<IUserType[]> => {
   const res = await fetch("https://dummyjson.com/users");
@@ -16,22 +16,20 @@ const customers = {
     return res.json();
   },
 
-  async postUser(user: IUserType) {
-    const res = await fetch("https://dummyjson.com/users/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(user),
-    })
-      .then((res) => res.json())
-      .then(console.log);
-  },
+  // async postUser(user: IUserType) {
+  //   const res = await fetch("https://dummyjson.com/users/add", {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(user),
+  //   })
+  //     .then((res) => res.json())
+  //     .then(console.log);
+  // },
 
-  async getCartsByUser(userId: string): Promise<ICartType[]> {
+  async getCartsByUser(userId: string): Promise<CartArr> {
     const res = await fetch(`https://dummyjson.com/carts/user/${userId}`);
     return res.json();
-  }
+  },
 };
-
-
 
 export default customers;

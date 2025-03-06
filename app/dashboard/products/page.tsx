@@ -21,8 +21,8 @@ import { siteConfig } from "@/data/site";
 export default async function ProductsPage() {
   // const products = await fetchProducts();
   // console.log(products.products);
-  const productsList = await apis.products.getAllProducts();
-  console.log(productsList.products);
+  const data = await apis.products.getAllProducts();
+  console.log(data.products);
 
   return (
     <div className="px-6 py-8 space-y-6">
@@ -50,7 +50,7 @@ export default async function ProductsPage() {
         </div>
       </div>
       <div>
-        <ProdDataTable columns={prodColumns} data={productsList.products} />
+        <ProdDataTable columns={prodColumns} data={data.products} />
       </div>
     </div>
   );
